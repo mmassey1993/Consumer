@@ -45,7 +45,7 @@ public class Application {
 
     @Bean
     MessageListenerAdapter listenerAdapter(Receiver receiver) {
-        return new MessageListenerAdapter(receiver, "postRequest");
+        return new MessageListenerAdapter(receiver, "receiveMessage");
     }
 
     public static void main(String[] args) throws InterruptedException {
