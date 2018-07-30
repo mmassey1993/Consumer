@@ -26,11 +26,10 @@ public class Receiver {
         DataOutputStream os = new DataOutputStream(con.getOutputStream());
         os.writeBytes(postJsonData);
         os.flush();
-        os.close();
+
 
         int responseCode = con.getResponseCode();
         System.out.println("\nSending 'POST' request to URL : " + url);
-        System.out.println("Post Data : " + postJsonData);
         System.out.println("Response Code : " + responseCode);
 
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
@@ -40,7 +39,7 @@ public class Receiver {
         while ((output = in.readLine()) != null) {
             response.append(output);
         }
-        in.close();
+
 
         System.out.println("Response: " + response.toString());
     }
