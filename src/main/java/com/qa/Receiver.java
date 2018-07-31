@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
+
 
 @Component
 public class Receiver {
@@ -13,7 +13,14 @@ public class Receiver {
     private final String USER_AGENT = "Mozilla/5.0";
 
     public void receiveMessage(String postJsonData) throws IOException {
-        String url = "http://localhost:9000/employeeservice/employees/shtuff";
+
+        httpPost("http://localhost:9000/email", postJsonData);
+        httpPost("http://localhost:9000/audit", postJsonData);
+        httpPost("http://localhost:9000/database", postJsonData);
+
+    }
+
+    private void httpPost(String url, String postJsonData) throws IOException{
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
